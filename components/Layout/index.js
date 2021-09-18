@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     <>
       <main>
         <Spacer y={1} inline={true} />
-        <Text color='white' align='center' size='4.5rem' h1>
+        <Text color='white' align='center' h1>
           Davdev Gallery
         </Text>
         <Spacer y={1} />

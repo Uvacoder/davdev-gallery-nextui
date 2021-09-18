@@ -9,10 +9,6 @@ export const globals = css.global`
     box-sizing: border-box;
   }
 
-  html {
-    font-size: 62.5%;
-  }
-
   body {
     font-family: 'Raleway', sans-serif;
   }
@@ -20,7 +16,7 @@ export const globals = css.global`
 
 export default css`
   main {
-    background: linear-gradient(to right, #6441a5, #2a0845);
+    background: black;
     min-height: 100vh;
   }
 
