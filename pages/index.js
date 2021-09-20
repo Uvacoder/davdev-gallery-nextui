@@ -1,4 +1,12 @@
-import { Container, Row, Col, Spacer, Text, Button } from '@nextui-org/react'
+import {
+  Grid,
+  Container,
+  Row,
+  Col,
+  Spacer,
+  Text,
+  Button
+} from '@nextui-org/react'
 import { Camera } from 'react-iconly'
 import mockImages from '../mockImages'
 import Head from 'next/head'
@@ -25,35 +33,33 @@ export default function Home() {
         </Row>
       </Container>
       <Spacer y={1} />
-      <Container xs display='flex'>
-        <Row wrap='wrap' gap={0.5} display='flex'>
-          {mockImages.map((image) => {
-            return (
-              <>
-                <Col key={image._id} span={4}>
-                  <img src={image.url} alt={image.title} />
-                  <Text color='white' h2>
-                    <p className='title'>{image.title}</p>
-                  </Text>
-                  <Spacer y={0.1} />
-                  <Text color='white'>
-                    <p>{image.description}</p>
-                  </Text>
-                  <Spacer y={0.3} />
-                  <Button flat color='secondary' auto>
-                    Ver imagen
-                  </Button>
-                  <Spacer y={0.3} />
-                  <Button flat color='error' auto>
-                    Eliminar
-                  </Button>
-                  <Spacer y={0.5} />
-                </Col>
-              </>
-            )
-          })}
-        </Row>
-      </Container>
+      <Grid.Container gap={0.5}>
+        {mockImages.map((image) => {
+          return (
+            <>
+              <Grid key={image._id}>
+                <img src={image.url} alt={image.title} />
+                <Text color='white' h2>
+                  <p className='title'>{image.title}</p>
+                </Text>
+                <Spacer y={0.1} />
+                <Text color='white'>
+                  <p>{image.description}</p>
+                </Text>
+                <Spacer y={0.3} />
+                <Button flat color='secondary' auto>
+                  Ver imagen
+                </Button>
+                <Spacer y={0.3} />
+                <Button flat color='error' auto>
+                  Eliminar
+                </Button>
+                <Spacer y={0.5} />
+              </Grid>
+            </>
+          )
+        })}
+      </Grid.Container>
 
       <style jsx>{`
         img {
