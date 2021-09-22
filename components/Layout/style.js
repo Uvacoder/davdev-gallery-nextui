@@ -16,7 +16,7 @@ export const globals = css.global`
 
 export default css`
   main {
-    background: black;
+    background: #222;
     min-height: 100vh;
   }
 

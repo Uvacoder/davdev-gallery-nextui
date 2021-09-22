@@ -1,4 +1,12 @@
-import { Container, Row, Col, Spacer, Text, Button } from '@nextui-org/react'
+import {
+  Container,
+  Row,
+  Col,
+  Grid,
+  Spacer,
+  Text,
+  Button
+} from '@nextui-org/react'
 import { Camera } from 'react-iconly'
 import mockImages from '../mockImages'
 import Head from 'next/head'
@@ -10,52 +18,56 @@ export default function Home() {
         <meta name='description' content='App de galería con Nextjs y NextUI' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Container>
-        <Row>
-          <Col>
-            <Button
-              flat
-              color='success'
-              auto
-              iconRight={<Camera fill='white' />}
-            >
-              Nueva imagen
-            </Button>
-          </Col>
-        </Row>
-      </Container>
-      <Spacer y={1} />
-      <Container xs display='flex'>
-        <Row wrap='wrap' gap={0.5} display='flex'>
+      <div>
+        <Container fluid>
+          <Row>
+            <Col>
+              <Button
+                flat
+                color='success'
+                auto
+                iconRight={<Camera fill='white' />}
+              >
+                Nueva imagen
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+        <Spacer y={0.5} />
+        <Grid.Container gap={0.1}>
           {mockImages.map((image) => {
             return (
-              <>
-                <Col key={image._id} span={4}>
+              <Grid key={image._id} xs={12} sm={6} md={3}>
+                <div align='center'>
                   <img src={image.url} alt={image.title} />
-                  <Text color='white' h2>
+                  <Text color='white' h2 align='center'>
                     <p className='title'>{image.title}</p>
                   </Text>
                   <Spacer y={0.1} />
-                  <Text color='white'>
+                  <Text color='white' align='center'>
                     <p>{image.description}</p>
                   </Text>
                   <Spacer y={0.3} />
-                  <Button flat color='secondary' auto>
+                  <Button flat color='secondary'>
                     Ver imagen
                   </Button>
-                  <Spacer y={0.3} />
-                  <Button flat color='error' auto>
+                  <Spacer y={0.5} />
+                  <Button flat color='error' size='medium'>
                     Eliminar
                   </Button>
-                  <Spacer y={0.5} />
-                </Col>
-              </>
+                  <Spacer y={0.1} />
+                </div>
+              </Grid>
             )
           })}
-        </Row>
-      </Container>
+        </Grid.Container>
+      </div>
 
       <style jsx>{`
+        div {
+          padding: 10px;
+        }
+
         img {
           width: 100%;
         }
