@@ -1,10 +1,23 @@
 import Link from 'next/link'
 import { ChevronLeftCircle } from 'react-iconly'
-import { Text, Link as UILink, Spacer } from '@nextui-org/react'
+import {
+  Text,
+  Link as UILink,
+  Spacer,
+  Container,
+  Col,
+  Row
+} from '@nextui-org/react'
 import useField from '../hooks/useField'
 
 export default function New() {
   const titleField = useField({
+    type: 'text',
+    placeholder: 'Título',
+    require: 'true'
+  })
+
+  const descriptionField = useField({
     type: 'text',
     placeholder: 'Título',
     require: 'true'
@@ -31,12 +44,33 @@ export default function New() {
           </UILink>
         </Link>
         <Spacer />
-        <form onSubmit={handleSubmit}>
-          <label>
-            <input {...titleField} />
-          </label>
-          <button type='submit'>Enviar</button>
-        </form>
+        <Container fluid>
+          <Col>
+            <form onSubmit={handleSubmit}>
+              <Row>
+                <label>
+                  <Text color='white'>Titulo</Text>
+                  <input {...titleField} />
+                </label>
+              </Row>
+              <Row>
+                <label>
+                  <Text color='white'>Descripción</Text>
+                  <input {...descriptionField} />
+                </label>
+              </Row>
+              <Row>
+                <label>
+                  <Text color='white'>Seleccionar imagen</Text>
+                  <input type='file' />
+                </label>
+              </Row>
+              <Row>
+                <button type='submit'>Enviar</button>
+              </Row>
+            </form>
+          </Col>
+        </Container>
       </div>
       <style jsx>{`
         div {
@@ -48,6 +82,16 @@ export default function New() {
           align-items: center;
           justify-content: space-between;
           width: 92px;
+        }
+
+        label {
+          display: block;
+          width: 100%;
+        }
+
+        input,
+        button {
+          width: 100%;
         }
       `}</style>
     </>
