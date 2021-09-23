@@ -1,3 +1,5 @@
+import Head from 'next/head'
+import router from 'next/router'
 import {
   Container,
   Row,
@@ -9,9 +11,12 @@ import {
 } from '@nextui-org/react'
 import { Camera } from 'react-iconly'
 import mockImages from '../mockImages'
-import Head from 'next/head'
 
 export default function Home() {
+  const handleSendToNew = (e) => {
+    router.push('/new')
+  }
+
   return (
     <>
       <Head>
@@ -27,6 +32,7 @@ export default function Home() {
                 color='success'
                 auto
                 iconRight={<Camera fill='white' />}
+                onClick={handleSendToNew}
               >
                 Nueva imagen
               </Button>
@@ -41,11 +47,11 @@ export default function Home() {
                 <div align='center'>
                   <img src={image.url} alt={image.title} />
                   <Text color='white' h2 align='center'>
-                    <p className='title'>{image.title}</p>
+                    {image.title}
                   </Text>
                   <Spacer y={0.1} />
                   <Text color='white' align='center'>
-                    <p>{image.description}</p>
+                    {image.description}
                   </Text>
                   <Spacer y={0.3} />
                   <Button flat color='secondary'>
