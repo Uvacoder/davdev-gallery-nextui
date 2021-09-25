@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { ChevronLeftCircle } from 'react-iconly'
+import Link from "next/link";
+import { ChevronLeftCircle } from "react-iconly";
 import {
   Text,
   Link as UILink,
@@ -7,72 +7,76 @@ import {
   Container,
   Col,
   Row,
-  Button
-} from '@nextui-org/react'
-import useField from '../hooks/useField'
+  Button,
+  Input,
+} from "@nextui-org/react";
+import useField from "../hooks/useField";
 
 export default function New() {
   const titleField = useField({
-    type: 'text',
-    placeholder: 'Título',
-    require: 'true'
-  })
+    type: "text",
+    placeholder: "Título",
+    require: "true",
+  });
 
   const descriptionField = useField({
-    type: 'text',
-    placeholder: 'Título',
-    require: 'true'
-  })
+    type: "text",
+    placeholder: "Título",
+    require: "true",
+  });
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(titleField.value)
-  }
+    e.preventDefault();
+    console.log(titleField.value);
+  };
 
   return (
     <>
       <div>
-        <Text h2 color='white'>
+        <Text h2 color="white">
           <p>Ingresa los datos de la nueva imagen.</p>
         </Text>
         <Spacer y={0.5} />
-        <Link href='/'>
-          <UILink color='success'>
+        <Link href="/">
+          <UILink color="success">
             <article>
-              <ChevronLeftCircle set='bold' />
+              <ChevronLeftCircle set="bold" />
               <p>Ir a inicio</p>
             </article>
           </UILink>
         </Link>
         <Spacer />
-        <Container fluid>
+        <Container>
           <Col>
             <form onSubmit={handleSubmit}>
               <Row>
                 <label>
-                  <Text color='white'>Seleccionar imagen</Text>
-                  <input type='file' />
+                  <Text color="white">Seleccionar imagen</Text>
+                  <input type="file" />
                 </label>
               </Row>
-              <Spacer y={0.4} />
+              <Spacer y={1.4} />
               <Row>
-                <label>
-                  <Text color='white'>Titulo</Text>
-                  <Spacer y={0.3} />
-                  <input {...titleField} />
-                </label>
+                <Input
+                  labelPlaceholder="Título"
+                  status="primary"
+                  size="medium"
+                  width="100%"
+                  {...titleField}
+                />
               </Row>
-              <Spacer y={0.4} />
+              <Spacer y={2} />
               <Row>
-                <label>
-                  <Text color='white'>Descripción</Text>
-                  <Spacer y={0.3} />
-                  <input {...descriptionField} />
-                </label>
+                <Input
+                  labelPlaceholder="Descripción"
+                  status="primary"
+                  width="100%"
+                  {...descriptionField}
+                />
               </Row>
               <Spacer y={0.8} />
               <Row>
-                <Button flat color='success' size='large'>
+                <Button flat color="success" size="large" type="submit">
                   Subir
                 </Button>
               </Row>
@@ -92,27 +96,23 @@ export default function New() {
           width: 92px;
         }
 
-        label,
-        button {
-          width: 100%;
-          max-width: 600px;
-        }
-
-        input,
-        button {
+        input {
           width: 100%;
           padding: 10px;
           border: none;
           border-radius: 5px;
+          color: white;
         }
 
-        input[type='file']::-webkit-file-upload-button {
+        input[type="file"]::-webkit-file-upload-button {
           border: 1px solid grey;
-          background: white;
+          background: #1b314c;
+          font-size: 1rem;
+          color: #18469b;
           border: none;
           padding: 8px 20px;
         }
       `}</style>
     </>
-  )
+  );
 }
