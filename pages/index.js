@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import router from 'next/router'
+import Head from "next/head";
+import router from "next/router";
 import {
   Container,
   Row,
@@ -7,21 +7,25 @@ import {
   Grid,
   Spacer,
   Text,
-  Button
-} from '@nextui-org/react'
-import { Camera } from 'react-iconly'
-import mockImages from '../mockImages'
+  Button,
+} from "@nextui-org/react";
+import { Camera } from "react-iconly";
+import mockImages from "../mockImages";
 
 export default function Home() {
   const handleSendToNew = (e) => {
-    router.push('/new')
-  }
+    router.push("/new");
+  };
+
+  const handleDelete = (e) => {
+    router.push(`/${e.target.id}/delete`);
+  };
 
   return (
     <>
       <Head>
-        <meta name='description' content='App de galería con Nextjs y NextUI' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name="description" content="App de galería con Nextjs y NextUI" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
         <Container fluid>
@@ -29,9 +33,9 @@ export default function Home() {
             <Col>
               <Button
                 flat
-                color='success'
+                color="success"
                 auto
-                iconRight={<Camera fill='white' />}
+                iconRight={<Camera fill="white" />}
                 onClick={handleSendToNew}
               >
                 Nueva imagen
@@ -44,27 +48,33 @@ export default function Home() {
           {mockImages.map((image) => {
             return (
               <Grid key={image._id} xs={12} sm={6} md={3}>
-                <div align='center'>
+                <div align="center">
                   <img src={image.url} alt={image.title} />
-                  <Text color='white' h2 align='center'>
+                  <Text color="white" h2 align="center">
                     {image.title}
                   </Text>
                   <Spacer y={0.1} />
-                  <Text color='white' align='center'>
+                  <Text color="white" align="center">
                     {image.description}
                   </Text>
                   <Spacer y={0.3} />
-                  <Button flat color='secondary'>
+                  <Button flat color="secondary">
                     Ver imagen
                   </Button>
                   <Spacer y={0.5} />
-                  <Button flat color='error' size='medium'>
-                    Eliminar
+                  <Button
+                    flat
+                    color="error"
+                    size="medium"
+                    onClick={handleDelete}
+                    id={image._id}
+                  >
+                    <span id={image._id}>Eliminar</span>
                   </Button>
                   <Spacer y={0.1} />
                 </div>
               </Grid>
-            )
+            );
           })}
         </Grid.Container>
       </div>
@@ -79,5 +89,5 @@ export default function Home() {
         }
       `}</style>
     </>
-  )
+  );
 }
