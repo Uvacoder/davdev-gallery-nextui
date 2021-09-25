@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Head from 'next/head'
 import router from 'next/router'
 import {
@@ -6,13 +5,6 @@ import {
   Row,
   Col,
   Grid,
-=======
-import {
-  Grid,
-  Container,
-  Row,
-  Col,
->>>>>>> 30e8d35c31eb89e8727d64c9e592ea8fdefe6add
   Spacer,
   Text,
   Button

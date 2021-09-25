@@ -6,7 +6,8 @@ import {
   Spacer,
   Container,
   Col,
-  Row
+  Row,
+  Button
 } from '@nextui-org/react'
 import useField from '../hooks/useField'
 
@@ -49,24 +50,31 @@ export default function New() {
             <form onSubmit={handleSubmit}>
               <Row>
                 <label>
-                  <Text color='white'>Titulo</Text>
-                  <input {...titleField} />
-                </label>
-              </Row>
-              <Row>
-                <label>
-                  <Text color='white'>Descripción</Text>
-                  <input {...descriptionField} />
-                </label>
-              </Row>
-              <Row>
-                <label>
                   <Text color='white'>Seleccionar imagen</Text>
                   <input type='file' />
                 </label>
               </Row>
+              <Spacer y={0.4} />
               <Row>
-                <button type='submit'>Enviar</button>
+                <label>
+                  <Text color='white'>Titulo</Text>
+                  <Spacer y={0.3} />
+                  <input {...titleField} />
+                </label>
+              </Row>
+              <Spacer y={0.4} />
+              <Row>
+                <label>
+                  <Text color='white'>Descripción</Text>
+                  <Spacer y={0.3} />
+                  <input {...descriptionField} />
+                </label>
+              </Row>
+              <Spacer y={0.8} />
+              <Row>
+                <Button flat color='success' size='large'>
+                  Subir
+                </Button>
               </Row>
             </form>
           </Col>
@@ -84,14 +92,25 @@ export default function New() {
           width: 92px;
         }
 
-        label {
-          display: block;
+        label,
+        button {
           width: 100%;
+          max-width: 600px;
         }
 
         input,
         button {
           width: 100%;
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+        }
+
+        input[type='file']::-webkit-file-upload-button {
+          border: 1px solid grey;
+          background: white;
+          border: none;
+          padding: 8px 20px;
         }
       `}</style>
     </>
