@@ -10,9 +10,8 @@ import {
   Button,
 } from "@nextui-org/react";
 import { Camera } from "react-iconly";
-import mockImages from "../mockImages";
 
-export default function Home() {
+export default function Home({ image }) {
   const handleSendToNew = (e) => {
     router.push("/new");
   };
@@ -45,7 +44,7 @@ export default function Home() {
         </Container>
         <Spacer y={0.5} />
         <Grid.Container gap={0.1}>
-          {mockImages.map((image) => {
+          {image.map((image) => {
             return (
               <Grid key={image._id} xs={12} sm={6} md={3}>
                 <div align="center">
@@ -91,3 +90,15 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = () => {
+  return fetch(process.env.NEXT_PUBLIC_API_URL_LOCAL)
+    .then((res) => res.json())
+    .then((data) => {
+      return {
+        props: {
+          image: data,
+        },
+      };
+    });
+};
