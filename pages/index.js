@@ -58,9 +58,11 @@ export default function Home({ images }) {
                     {image.description}
                   </Text>
                   <Spacer y={0.3} />
-                  <Button flat color="secondary">
-                    Ver imagen
-                  </Button>
+                  <a href={image.publicUrl} rel="noreferrer" target="_blank">
+                    <Button flat color="secondary">
+                      <span>Ver imagen</span>
+                    </Button>
+                  </a>
                   <Spacer y={0.5} />
                   <Button
                     flat
