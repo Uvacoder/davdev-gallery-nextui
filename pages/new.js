@@ -11,6 +11,7 @@ import {
   Input,
 } from "@nextui-org/react";
 import useField from "../hooks/useField";
+import axios from "axios";
 
 export default function New() {
   const titleField = useField({
@@ -25,9 +26,18 @@ export default function New() {
     require: "true",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(titleField.value);
+    try {
+      const fd = new FormData();
+      fd.append("title", titleField.value);
+      fd.append("description", descriptionField.value);
+      fd.append("uploadImage", e.target[0].files[0]);
+      const data = await axios.post(process.env.NEXT_PUBLIC_API_URL_LOCAL, fd);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
