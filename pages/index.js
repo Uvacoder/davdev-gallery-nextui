@@ -1,5 +1,6 @@
 import Head from "next/head";
 import router from "next/router";
+import axios from "axios";
 import {
   Container,
   Row,
@@ -11,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import { Camera } from "react-iconly";
 
-export default function Home({ image }) {
+export default function Home({ images }) {
   const handleSendToNew = (e) => {
     router.push("/new");
   };
@@ -44,11 +45,11 @@ export default function Home({ image }) {
         </Container>
         <Spacer y={0.5} />
         <Grid.Container gap={0.1}>
-          {image.map((image) => {
+          {images.map((image) => {
             return (
               <Grid key={image._id} xs={12} sm={6} md={3}>
                 <div align="center">
-                  <img src={image.url} alt={image.title} />
+                  <img src={image.publicUrl} alt={image.title} />
                   <Text color="white" h2 align="center">
                     {image.title}
                   </Text>
@@ -85,20 +86,19 @@ export default function Home({ image }) {
 
         img {
           width: 100%;
+          height: 200px;
         }
       `}</style>
     </>
   );
 }
 
-export const getServerSideProps = () => {
-  return fetch(process.env.NEXT_PUBLIC_API_URL_LOCAL)
-    .then((res) => res.json())
-    .then((data) => {
-      return {
-        props: {
-          image: data,
-        },
-      };
-    });
+export const getServerSideProps = async () => {
+  const images = await axios.get(process.env.NEXT_PUBLIC_API_URL_LOCAL);
+  console.log(process.env.NEXT_PUBLIC_API_URL_LOCAL);
+  return {
+    props: {
+      images: images.data,
+    },
+  };
 };
