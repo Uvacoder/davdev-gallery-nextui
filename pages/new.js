@@ -1,4 +1,5 @@
 import Link from "next/link";
+import router from "next/router";
 import { ChevronLeftCircle } from "react-iconly";
 import {
   Text,
@@ -33,8 +34,8 @@ export default function New() {
       fd.append("title", titleField.value);
       fd.append("description", descriptionField.value);
       fd.append("uploadImage", e.target[0].files[0]);
-      const data = await axios.post(process.env.NEXT_PUBLIC_API_URL_LOCAL, fd);
-      console.log(data);
+      await axios.post(process.env.NEXT_PUBLIC_API_URL_LOCAL, fd);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
