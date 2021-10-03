@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import router from 'next/router'
-import axios from 'axios'
+import Head from "next/head";
+import router from "next/router";
+import axios from "axios";
 import {
   Container,
   Row,
@@ -8,34 +8,34 @@ import {
   Grid,
   Spacer,
   Text,
-  Button
-} from '@nextui-org/react'
-import { Camera } from 'react-iconly'
+  Button,
+} from "@nextui-org/react";
+import { Camera } from "react-iconly";
 
 export default function Home({ images }) {
   const handleSendToNew = (e) => {
-    router.push('/new')
-  }
+    router.push("/new");
+  };
 
   const handleDelete = (e) => {
-    router.push(`/${e.target.id}/delete`)
-  }
+    router.push(`/${e.target.id}/delete`);
+  };
 
   return (
     <>
       <Head>
-        <meta name='description' content='App de galería con Nextjs y NextUI' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name="description" content="App de galería con Nextjs y NextUI" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <section>
         <Container fluid>
           <Row>
             <Col>
               <Button
                 flat
-                color='success'
+                color="success"
                 auto
-                iconRight={<Camera fill='white' />}
+                iconRight={<Camera fill="white" />}
                 onClick={handleSendToNew}
               >
                 Nueva imagen
@@ -48,26 +48,26 @@ export default function Home({ images }) {
           {images.map((image) => {
             return (
               <Grid key={image._id} xs={12} sm={6} md={3}>
-                <div align='center'>
+                <div align="center">
                   <img src={image.publicUrl} alt={image.title} />
-                  <Text color='white' h2 align='center'>
+                  <Text color="white" h2 align="center">
                     {image.title}
                   </Text>
                   <Spacer y={0.1} />
-                  <Text color='white' align='center'>
+                  <Text color="white" align="center">
                     {image.description}
                   </Text>
                   <Spacer y={0.3} />
-                  <a href={image.publicUrl} rel='noreferrer' target='_blank'>
-                    <Button flat color='secondary'>
+                  <a href={image.publicUrl} rel="noreferrer" target="_blank">
+                    <Button flat color="secondary">
                       <span>Ver imagen</span>
                     </Button>
                   </a>
                   <Spacer y={0.5} />
                   <Button
                     flat
-                    color='error'
-                    size='medium'
+                    color="error"
+                    size="medium"
                     onClick={handleDelete}
                     id={image._id}
                   >
@@ -76,31 +76,40 @@ export default function Home({ images }) {
                   <Spacer y={0.1} />
                 </div>
               </Grid>
-            )
+            );
           })}
         </Grid.Container>
-      </div>
+      </section>
 
       <style jsx>{`
-        div {
+        div,
+        section {
           padding: 10px;
+          width: 100%;
+        }
+
+        div {
+          border: 1px solid #444;
+          margin: 0 5px;
+          border-radius: 10px;
         }
 
         img {
           width: 100%;
           height: 200px;
+          object-fit: cover;
         }
       `}</style>
     </>
-  )
+  );
 }
 
 export const getServerSideProps = async () => {
-  const images = await axios.get(process.env.NEXT_PUBLIC_API_URL)
-  console.log(process.env.NEXT_PUBLIC_API_URL)
+  const images = await axios.get(process.env.NEXT_PUBLIC_API_URL);
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   return {
     props: {
-      images: images.data
-    }
-  }
-}
+      images: images.data,
+    },
+  };
+};
