@@ -90,7 +90,7 @@ export default function Home({ images }) {
 
         div {
           border: 1px solid #444;
-          margin: 0 5px;
+          margin: 0 5px 15px;
           border-radius: 10px;
         }
 
